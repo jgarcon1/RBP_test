@@ -1,0 +1,44 @@
+{% extends "dpsite/base.html" %}
+{% load static %}
+{% block content %}
+
+<div id="homeCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators home-carousel-indicators">
+        {% for slide in slides %}
+            <li data-target="#homeCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 == 0 %}class="active"{% endif %}></li>
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+        {% for slide in slides %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} dp-slide-fixed-image" style="background-image: url('{% if slide.related_image %}{{ slide.related_image.url }}{% else %}data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=={% endif %}')">
+                <div class="container">
+                    <div class="home-carousel-caption carousel-caption text-left">
+                        {{ slide.slide_text|safe }}
+                    </div>
+<!--                    <div class="home-fixed-carousel-caption carousel-caption text-left">
+                        {{ home_sidebar|safe }}
+                        <span class="sm-logos">
+                            {% if fb_url != '' %}
+                                <a href="{{ fb_url }}">
+                                    <img src="{% static 'img/fb.png' %}" alt="facebook logo" height="50">
+                                </a>
+                            {% endif %}
+                            {% if insta_url != '' %}
+                                <a href="{{ insta_url }}">
+                                    <img src="{% static 'img/insta.png' %}" alt="instagram logo" height="50">
+                                </a>
+                            {% endif %}
+                            {% if tw_url != '' %}
+                                <a href="{{ tw_url }}">
+                                    <img src="{% static 'img/twi.png' %}" alt="twitter logo" height="50">
+                                </a>
+                            {% endif %}
+                        </span>
+                    </div> -->
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
